@@ -1,0 +1,13 @@
+# Parcel
+- Dev Build
+- Locacl Server
+- HMR = Hot Module Replacement
+- File Watching Algorithm 
+- Caching - Faster Builds
+- Image Optimization
+- Minification
+- Bundling
+- Compressing
+- Consistent Hashing
+- tree Shaking
+- Error Handling
