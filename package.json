@@ -2,7 +2,10 @@
   "name": "namaste-react",
   "version": "1.0.0",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "start": "parcel index.html",
+    "build": "parcel build index.html"
+
   },
   "author": "Abhishek Kamat",
   "license": "ISC",
