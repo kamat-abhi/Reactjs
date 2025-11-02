@@ -53,3 +53,4 @@ const HeadingComponent = () => (
 //render method takes a react element or component as an argument and converts it into a DOM element and adds it to the DOM and html page
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(<HeadingComponent/>);
+//never use index for key in lists

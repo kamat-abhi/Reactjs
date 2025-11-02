@@ -48,3 +48,42 @@
   display: block;
   border-bottom: 1px solid black;
 }
+.filter {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.my-btn {
+  background-color: #ff5200;   /* Swiggy-like orange */
+  color: white;                /* Text color */
+  border: none;                /* Remove default border */
+  padding: 12px 24px;          /* Button size */
+  font-size: 16px;             /* Text size */
+  font-weight: bold;           /* Bold text */
+  border-radius: 8px;          /* Rounded corners */
+  cursor: pointer;             /* Pointer on hover */
+  transition: all 0.3s ease;   /* Smooth hover effect */
+}
+
+.my-btn:hover {
+  background-color: #e64a00;   /* Darker on hover */
+  transform: translateY(-2px); /* Slight lift */
+}
+
+.my-btn:active {
+  transform: translateY(0);    /* Back to normal when clicked */
+}
+
+.shimmer-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    padding: 20px;
+}
+.shimmer-card {
+    width: 200px;
+    height: 250px;
+    background-color: #e0e0e0;
+    border-radius: 8px;
+}
