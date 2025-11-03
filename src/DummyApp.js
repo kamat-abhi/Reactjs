@@ -6,6 +6,7 @@ import Shimmer from "./Shimmer";
 
 
 const Header = () => {
+    const [btnName, setbtnName] = useState("Login");
     return (
         <div className="header">
             <div className="logo-container">
@@ -17,6 +18,9 @@ const Header = () => {
                     <li>About us</li>
                     <li>Contact us</li>
                     <li>Cart</li>
+                    <button className="login-btn" onClick={() =>{
+                        btnName === "Login" ? setbtnName("Logout") : setbtnName("Login");
+                    }}>{btnName}</button>
                 </ul>
             </div>    
 
@@ -38,14 +42,23 @@ const RestaurantCard = (props) => {
 };
 
 const Body = () => {
+    //Locla state variable
     const [ListOfRestaurants, setListOfRestaurants] = useState([]);
+    const [filteredRestaurants, setfilteredRestaurants] = useState([]);
 
+    const [searchText, setsearchText] = useState("")
+
+    console.log("Abhishek");
+    
+    // Whenever state variable update, react triggers a reconciliation cycle(re-render the component)
     const fetchData = async () => {
         const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9351929&lng=77.62448069999999&page_type=DESKTOP_WEB_LISTING");
 
         const json = await data.json();
         const restaurantList = json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
         setListOfRestaurants(restaurantList || []);
+        setfilteredRestaurants(restaurantList || []);
+        
     };
 
     useEffect(() => {
@@ -58,15 +71,32 @@ const Body = () => {
     return (
          <div className="body">
                     <div className="filter">
-                        <button className="my-btn" onClick={() => {
+                        <div className="search">
+                            <input type="text" className="search-box" value={searchText} onChange={(e) => {
+                                setsearchText(e.target.value)
+                            }}/>
+                            <button className="search-btn"onClick={() => {
+                                const filteredRest = ListOfRestaurants.filter((res) => res.info.name.toLowerCase().includes(searchText.toLowerCase()))
+                                setfilteredRestaurants(filteredRest);
+                            }}>Search</button>
+
+                        </div>
+                        <div className="btn-container">
+                            <button className="my-btn" onClick={() => {
                             const filteredList = ListOfRestaurants.filter((res) => res.info && res.info.avgRating>4.5);
-                            setListOfRestaurants(filteredList)
+                            setfilteredRestaurants(filteredList)
+                            console.log(ListOfRestaurants)
                         }}>
                             Top Rated Restaurant
                         </button>
+                        <button className="my-btn" onClick={() => {
+                            setfilteredRestaurants(ListOfRestaurants)
+                            console.log(ListOfRestaurants);
+                        }}>All Restaurants</button>
+                        </div>
                     </div>
                     <div className="res-container">
-                        {ListOfRestaurants.map((restaurant) => {
+                        {filteredRestaurants.map((restaurant) => {
                         return <RestaurantCard key={restaurant.info.id} resData={restaurant} />
                         })}
                     </div>
