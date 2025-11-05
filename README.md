@@ -11,6 +11,8 @@
 - Consistent Hashing
 - tree Shaking
 - Error Handling
+  // Whenever state variable update, react triggers a reconciliation cycle(re-render the component)
+
 
 ## 2 types of Routing in web apps
  - Client Side Routing
@@ -53,3 +55,15 @@ Custom hooks allow us to extract component logic into reusable functions.
   “Show the child page content here.”
 4. Link
    <Link> is React Router’s version of <a> tag — used for internal navigation without reloading the page.
+
+⚠️ 2. Hooks can’t be asynchronous
+
+If you try to await inside the main hook body, React will complain —
+Hooks must return synchronously (immediately) during rendering.
+
+React needs to finish rendering the component tree first.
+Async code should run after render, not during.
+
+That’s why useEffect exists — it’s React’s way of saying:
+
+“Do this side effect (fetch, timeout, etc.) after rendering.”   
