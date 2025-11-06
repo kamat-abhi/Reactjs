@@ -2,18 +2,31 @@ import { useState, useEffect } from "react";
 import useRestaurantCard from "../hooks/useRestaurantCard.js";
 import Shimmer from "./Shimmer.js";
 import RestaurantCard from "./RestaurantCard.js";
+import useOnlineStatus from "../hooks/useOnlineStatus.js";
+
 
 
 const Body = () => {
   const [filteredRestaurants, setfilteredRestaurants] = useState([]);
   const [searchText, setsearchText] = useState("");
   const ListOfRestaurants = useRestaurantCard([]);
+  let onlineStatus = useOnlineStatus();
   console.log(ListOfRestaurants)
   useEffect(() => {
     setfilteredRestaurants(ListOfRestaurants);
   }, [ListOfRestaurants]);
   if (ListOfRestaurants.length === 0) {
     return <Shimmer />;
+  }
+  if (!onlineStatus) {
+    return (
+      <div>
+        <h1 style={{ textAlign: "center" }}>
+          You are offline. Please turn on the internet
+        </h1>
+        <DinoGame />
+      </div>
+    );
   }
   return (
     <div className="body">
