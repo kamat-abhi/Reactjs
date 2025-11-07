@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import useRestaurantCard from "../hooks/useRestaurantCard.js";
 import Shimmer from "./Shimmer.js";
-import RestaurantCard from "./RestaurantCard.js";
+import RestaurantCard, { withPromatedLabel } from "./RestaurantCard.js";
 import useOnlineStatus from "../hooks/useOnlineStatus.js";
 
 
@@ -11,13 +11,14 @@ const Body = () => {
   const [searchText, setsearchText] = useState("");
   const ListOfRestaurants = useRestaurantCard([]);
   let onlineStatus = useOnlineStatus();
+  let RestaurantCardPromoted = withPromatedLabel(RestaurantCard);
   console.log(ListOfRestaurants)
   useEffect(() => {
     setfilteredRestaurants(ListOfRestaurants);
   }, [ListOfRestaurants]);
-  /*if (ListOfRestaurants.length === 0) {
+  if (ListOfRestaurants.length === 0) {
     return <Shimmer />;
-  }*/
+  }
   if (!onlineStatus) {
     return (
       <div>
@@ -53,7 +54,7 @@ const Body = () => {
         </div>
         <div className="m-4 p-4 flex items-center ">
           <button
-            className="px-4 py-1 bg-gray-100 rounded-2xl text-xl shadow-xl"
+            className="px-4 py-1 bg-gray-100 rounded-2xl text-xl shadow-xl hover:bg-gray-200 cursor-pointer"
             onClick={() => {
               const filteredList = ListOfRestaurants.filter(
                 (res) => res.info && res.info.avgRating > 4.5
@@ -64,7 +65,7 @@ const Body = () => {
             Top Rated Restaurant
           </button>
           <button
-            className="px-4 py-1 m-2 bg-gray-100 rounded-2xl text-xl shadow-xl"
+            className="px-4 py-1 m-2 bg-gray-100 rounded-2xl text-xl shadow-xl  hover:bg-gray-200 cursor-pointer"
             onClick={() => {
               setfilteredRestaurants(ListOfRestaurants);
             }}
@@ -75,9 +76,11 @@ const Body = () => {
       </div>
       <div className="flex flex-wrap">
         {filteredRestaurants.map((restaurant) => {
-          return (
-            <RestaurantCard key={restaurant.info.id} resData={restaurant} />
-          );
+          return restaurant.info.isOpen ? (
+            <RestaurantCardPromoted key={restaurant.info.id} resData={restaurant} />
+            ) : (
+              <RestaurantCard key={restaurant.info.id} resData={restaurant} />
+            )
         })}
       </div>
     </div>

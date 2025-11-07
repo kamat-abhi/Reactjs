@@ -14,10 +14,21 @@ const RestaurantCard = (props) => {
       />
       <h3 className="font-bold py-2 text-xl">{resData.info.name}</h3>
       <h4>{resData.info.cuisines.map((cuisen) => cuisen+", ")}</h4>
-      <h4>{resData.info.avgRating}</h4>
+      <h4>{resData.info.avgRating} ⭐</h4>
       <h4>{resData.info.sla.deliveryTime} minutes</h4>
     </div>
   );
 };
+
+export const withPromatedLabel = (RestaurantCard) => {
+  return (props) => {
+    return (
+      <div>
+        <label className="absolute bg-black text-white m-2 p-2 rounded-lg">Promated</label>
+        <RestaurantCard {...props}/>
+      </div>
+    )
+  }
+}
 
 export default RestaurantCard;

@@ -1,43 +1,30 @@
-import { useState, useEffect } from "react"
+import React from "react";
+import useRestaurantMenu from "../hooks/useRestaurantMenu";
 import { useParams } from "react-router";
-import Shimmer from "./Shimmer.js";
-import useRestaurantMenu from "../hooks/useRestaurantMenu.js";
 
 const RestaurantMenu = () => {
-    const {resid} = useParams()
-    const resDataList = useRestaurantMenu(resid);
-    if (!resDataList) {
-        return <Shimmer />;
-    }
-    return (
-        <div class="restaurant-card">
-        <div class="card-header">
-            <h3 class="restaurant-name">{resDataList.name}</h3>
-        </div>
 
-        <div class="card-info">
-            <span class="rating">
-            ⭐ {resDataList.avgRatingString} <span class="ratings">{" (" + resDataList.totalRatingsString + " )"}</span>
-            </span>
-            <span class="dot">•</span>
-            <span class="price">{resDataList.costForTwoMessage}</span>
-        </div>
+    // route param name is `resid` (defined in App.js)
+    const { resid } = useParams();
+  const { menu, loading, error } = useRestaurantMenu(resid);
 
-        <div class="cuisine">
-            <h2>{resDataList?.lables[2]?.message}</h2>
-        </div>
+  if (loading) return <p className="text-gray-500">Loading menu...</p>;
+  if (error) return <p className="text-red-500">Error: {error}</p>;
 
-        <div class="outlet">
-            <div class="line"></div>
-            <div class="outlet-info">
-            <p><strong>Outlet</strong> {resDataList.city} Locality</p>
-            <p>{resDataList?.sla?.minDeliveryTime}–{resDataList?.sla?.maxDeliveryTime} mins</p>
-            </div>
-        </div>
-        </div>
-    )
+  const info = menu?.data?.cards?.find(
+    (card) => card.card?.card?.info
+  )?.card?.card?.info;
 
-}
-
+  return (
+    <div className="p-6 bg-gray-50 rounded-2xl shadow-md">
+      <h1 className="text-2xl font-bold mb-2">{info?.name}</h1>
+      <p className="text-gray-600">{info?.cuisines?.join(", ")}</p>
+      <p className="text-gray-600">{info?.areaName}</p>
+      <p className="text-gray-800 font-semibold">
+        ⭐ {info?.avgRatingString} ({info?.totalRatingsString})
+      </p>
+    </div>
+  );
+};
 
 export default RestaurantMenu;

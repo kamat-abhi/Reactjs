@@ -80,4 +80,7 @@ That’s why useEffect exists — it’s React’s way of saying:
 6. Tailwind
 7. chakra UI
 
+## Higher order component =>
+Takes a component and return the component;
+
 
