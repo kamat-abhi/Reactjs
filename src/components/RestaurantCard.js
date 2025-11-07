@@ -4,16 +4,16 @@ const RestaurantCard = (props) => {
   console.log(resData);
   console.log(resData.info.id);
   return (
-    <div className="res-card">
+    <div className="m-4 p-4 w-[220px] bg-gray-100 rounded-2xl hover:bg-gray-200 wrap-break-word">
       <img
-        className="res-logo"
+        className="rounded-xl "
         src={
           "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/" +
           resData.info.cloudinaryImageId
         }
       />
-      <h3>{resData.info.name}</h3>
-      <h4>{resData.info.cuisines.map((cuisen) => cuisen)}</h4>
+      <h3 className="font-bold py-2 text-xl">{resData.info.name}</h3>
+      <h4>{resData.info.cuisines.map((cuisen) => cuisen+", ")}</h4>
       <h4>{resData.info.avgRating}</h4>
       <h4>{resData.info.sla.deliveryTime} minutes</h4>
     </div>

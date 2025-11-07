@@ -66,4 +66,18 @@ Async code should run after render, not during.
 
 That’s why useEffect exists — it’s React’s way of saying:
 
-“Do this side effect (fetch, timeout, etc.) after rendering.”   
+“Do this side effect (fetch, timeout, etc.) after rendering.”  
+
+
+## Chunking, Code splitting, Dynamic Bundling, Lazy Loading, on demand Loading
+
+## CSS
+1. sass
+2. scss
+3. styled-component
+4. Material UI
+5. Bootstrap
+6. Tailwind
+7. chakra UI
+
+

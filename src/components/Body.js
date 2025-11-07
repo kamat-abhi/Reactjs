@@ -15,33 +15,32 @@ const Body = () => {
   useEffect(() => {
     setfilteredRestaurants(ListOfRestaurants);
   }, [ListOfRestaurants]);
-  if (ListOfRestaurants.length === 0) {
+  /*if (ListOfRestaurants.length === 0) {
     return <Shimmer />;
-  }
+  }*/
   if (!onlineStatus) {
     return (
       <div>
         <h1 style={{ textAlign: "center" }}>
           You are offline. Please turn on the internet
         </h1>
-        <DinoGame />
       </div>
     );
   }
   return (
-    <div className="body">
-      <div className="filter">
-        <div className="search">
+    <div className="">
+      <div className="flex">
+        <div className="m-4 p-4">
           <input
             type="text"
-            className="search-box"
+            className="border border-solid border-black rounded-xl text-shadow-xs text-center shadow-xl focus:ring-2"
             value={searchText}
             onChange={(e) => {
               setsearchText(e.target.value);
             }}
           />
           <button
-            className="search-btn"
+            className="px-4 py-1 bg-green-100 m-4 rounded-2xl text-xl cursor-pointer shadow-xl"
             onClick={() => {
               const filteredRest = ListOfRestaurants.filter((res) =>
                 res.info.name.toLowerCase().includes(searchText.toLowerCase())
@@ -52,9 +51,9 @@ const Body = () => {
             Search
           </button>
         </div>
-        <div className="btn-container">
+        <div className="m-4 p-4 flex items-center ">
           <button
-            className="my-btn"
+            className="px-4 py-1 bg-gray-100 rounded-2xl text-xl shadow-xl"
             onClick={() => {
               const filteredList = ListOfRestaurants.filter(
                 (res) => res.info && res.info.avgRating > 4.5
@@ -65,7 +64,7 @@ const Body = () => {
             Top Rated Restaurant
           </button>
           <button
-            className="my-btn"
+            className="px-4 py-1 m-2 bg-gray-100 rounded-2xl text-xl shadow-xl"
             onClick={() => {
               setfilteredRestaurants(ListOfRestaurants);
             }}
@@ -74,7 +73,7 @@ const Body = () => {
           </button>
         </div>
       </div>
-      <div className="res-container">
+      <div className="flex flex-wrap">
         {filteredRestaurants.map((restaurant) => {
           return (
             <RestaurantCard key={restaurant.info.id} resData={restaurant} />
