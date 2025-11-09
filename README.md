@@ -83,4 +83,18 @@ That’s why useEffect exists — it’s React’s way of saying:
 ## Higher order component =>
 Takes a component and return the component;
 
+## Lifting 
 
+## props drilling
+
+## createContext component and useContext
+- we can access the data anywhere we want to with the help of these two and we can overwrite the data useing (.Provider) ex = <UserContext.Provider value={{logedInUser: username}}>
+<Header/>
+</UserContext.Provider>
+
+## Redux
+ - Install 
+ - Build our store
+ - connect our store to our app
+ - slice (cartSlice)
+ - Selector

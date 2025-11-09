@@ -12,7 +12,6 @@ const Body = () => {
   const ListOfRestaurants = useRestaurantCard([]);
   let onlineStatus = useOnlineStatus();
   let RestaurantCardPromoted = withPromatedLabel(RestaurantCard);
-  console.log(ListOfRestaurants)
   useEffect(() => {
     setfilteredRestaurants(ListOfRestaurants);
   }, [ListOfRestaurants]);
