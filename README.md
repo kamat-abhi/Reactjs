@@ -98,3 +98,21 @@ Takes a component and return the component;
  - connect our store to our app
  - slice (cartSlice)
  - Selector
+
+
+ ## Types of testing (developer)
+  - Unit Testing - (test the react component in isolation)
+  - Integration Testing - (multiple component are envolved and talking to each other)
+  - End to End Testing - e2e testing - (start from user landing on page to end)
+
+we use React Testing Library (it uses Jest behind the scene)
+ - React Testing Library builds on top of DOM Testing Library by adding APIs for working with React components.  
+
+ ## Setting up Testing in our app
+  - Install React Testing Library
+  - Installing Jest
+  - Installed babel dependencies
+  - Configure Babel
+  - COnfigure Parcel Config file to disable Babel transpilation 
+  - JEST - npx create-jest
+  - Install jsdom library
