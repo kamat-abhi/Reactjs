@@ -2,7 +2,7 @@
 - Dev Build
 - Locacl Server
 - HMR = Hot Module Replacement
-- File Watching Algorithm 
+- File Watching Algorithm
 - Caching - Faster Builds
 - Image Optimization
 - Minification
@@ -39,7 +39,7 @@ Custom hooks allow us to extract component logic into reusable functions.
 ## useEffect() =>
    // if no dependency array  => useEffect is called on every render
    // if dependency array is empty = [] => useffect is called on initial render(just once)
-   // if there is dependency array like state varibale  => called everytime state varibale is updated 
+   // if there is dependency array like state varibale  => called everytime state varibale is updated
 
 ## react-router (package)
 1. createBrowserRouter(component)
@@ -66,7 +66,7 @@ Async code should run after render, not during.
 
 That’s why useEffect exists — it’s React’s way of saying:
 
-“Do this side effect (fetch, timeout, etc.) after rendering.”  
+“Do this side effect (fetch, timeout, etc.) after rendering.” 
 
 
 ## Chunking, Code splitting, Dynamic Bundling, Lazy Loading, on demand Loading
@@ -83,7 +83,7 @@ That’s why useEffect exists — it’s React’s way of saying:
 ## Higher order component =>
 Takes a component and return the component;
 
-## Lifting 
+## Lifting
 
 ## props drilling
 
@@ -93,7 +93,7 @@ Takes a component and return the component;
 </UserContext.Provider>
 
 ## Redux
- - Install 
+ - Install
  - Build our store
  - connect our store to our app
  - slice (cartSlice)
@@ -106,13 +106,16 @@ Takes a component and return the component;
   - End to End Testing - e2e testing - (start from user landing on page to end)
 
 we use React Testing Library (it uses Jest behind the scene)
- - React Testing Library builds on top of DOM Testing Library by adding APIs for working with React components.  
+ - React Testing Library builds on top of DOM Testing Library by adding APIs for working with React components.
 
  ## Setting up Testing in our app
   - Install React Testing Library
   - Installing Jest
   - Installed babel dependencies
   - Configure Babel
-  - COnfigure Parcel Config file to disable Babel transpilation 
+  - COnfigure Parcel Config file to disable Babel transpilation
   - JEST - npx create-jest
   - Install jsdom library
+  - Install @babel/preset-react - to make JSX work in test cases
+  - Include @babel/preset-react inside my babel config
+  - Install @testing-library/jest-dom
